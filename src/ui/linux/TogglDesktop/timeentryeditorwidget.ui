@@ -722,12 +722,18 @@
         <property name="text">
          <string>Done</string>
         </property>
+        <property name="shortcut">
+         <string>Esc, Return</string>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="deleteButton">
         <property name="text">
          <string>Delete</string>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+D</string>
         </property>
        </widget>
       </item>
