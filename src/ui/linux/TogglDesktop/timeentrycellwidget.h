@@ -4,6 +4,8 @@
 #define SRC_UI_LINUX_TOGGLDESKTOP_TIMEENTRYCELLWIDGET_H_
 
 #include <QWidget>
+#include <QKeyEvent>
+#include <QFocusEvent>
 
 #include "./timeentryview.h"
 #include "./clickablelabel.h"
@@ -26,6 +28,9 @@ class TimeEntryCellWidget : public QWidget {
 
  protected:
     virtual void mousePressEvent(QMouseEvent *event);
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void focusInEvent(QFocusEvent *event);
+    virtual void focusOutEvent(QFocusEvent *event);
     virtual void resizeEvent(QResizeEvent *);
 
  private slots:  // NOLINT

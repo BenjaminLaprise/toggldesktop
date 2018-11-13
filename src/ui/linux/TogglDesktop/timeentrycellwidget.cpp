@@ -141,6 +141,30 @@ void TimeEntryCellWidget::mousePressEvent(QMouseEvent *event) {
     TogglApi::instance->editTimeEntry(guid, "");
     QWidget::mousePressEvent(event);
 }
+void TimeEntryCellWidget::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key()  == Qt::Key_Return)
+    {
+        if (group) {
+            on_groupButton_clicked();
+            return;
+        }
+        TogglApi::instance->editTimeEntry(guid, "");
+        QWidget::keyPressEvent(event);
+    }
+}
+
+void TimeEntryCellWidget::focusInEvent(QFocusEvent *event)
+{
+    this->setStyleSheet("border:2px solid black;");
+    QWidget::focusOutEvent(event);
+}
+
+void TimeEntryCellWidget::focusOutEvent(QFocusEvent *event)
+{
+    this->setStyleSheet("border:none;");
+    QWidget::focusOutEvent(event);
+}
 
 void TimeEntryCellWidget::on_continueButton_clicked() {
     TogglApi::instance->continueTimeEntry(guid);
