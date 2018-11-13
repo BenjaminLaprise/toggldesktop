@@ -143,26 +143,28 @@ void TimeEntryCellWidget::mousePressEvent(QMouseEvent *event) {
 }
 void TimeEntryCellWidget::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key()  == Qt::Key_Return)
-    {
+    if((event->key()  == Qt::Key_E) && QApplication::keyboardModifiers() && Qt::ControlModifier){
         if (group) {
             on_groupButton_clicked();
             return;
         }
         TogglApi::instance->editTimeEntry(guid, "");
-        QWidget::keyPressEvent(event);
     }
+    else if(event->key()  == Qt::Key_Return) {
+        TogglApi::instance->continueTimeEntry(guid);
+    }
+    QWidget::keyPressEvent(event);
 }
 
 void TimeEntryCellWidget::focusInEvent(QFocusEvent *event)
 {
-    this->setStyleSheet("border:2px solid black;");
+    this->findChild<QFrame*>("dataFrame")->setLineWidth(1);
     QWidget::focusOutEvent(event);
 }
 
 void TimeEntryCellWidget::focusOutEvent(QFocusEvent *event)
 {
-    this->setStyleSheet("border:none;");
+    this->findChild<QFrame*>("dataFrame")->setLineWidth(0);
     QWidget::focusOutEvent(event);
 }
 
